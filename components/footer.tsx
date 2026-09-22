@@ -3,7 +3,7 @@ import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-black/[0.06] bg-paper-deep/60 py-10 backdrop-blur-sm">
+    <footer className="cv-auto border-t border-white/40 bg-paper-deep/40 py-10">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-6">
         <div className="flex items-center gap-4">
           <a
@@ -11,14 +11,14 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] text-ink-secondary transition-all hover:border-accent hover:text-accent"
+            className="glass-tile flex h-10 w-10 items-center justify-center rounded-full text-ink-secondary transition-[background-color,color] hover:bg-glass-strong hover:text-accent"
           >
             <GithubIcon className="h-5 w-5" />
           </a>
           <a
             href="mailto:rafitrinugraha@gmail.com"
             aria-label="Email"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/[0.08] text-ink-secondary transition-all hover:border-accent hover:text-accent"
+            className="glass-tile flex h-10 w-10 items-center justify-center rounded-full text-ink-secondary transition-[background-color,color] hover:bg-glass-strong hover:text-accent"
           >
             <Mail className="h-5 w-5" />
           </a>

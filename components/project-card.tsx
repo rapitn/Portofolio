@@ -9,10 +9,10 @@ export type Project = {
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-2 hover:border-accent hover:shadow-[0_10px_40px_-10px_rgba(0,229,255,0.4)]">
+    <div className="glass-surface flex flex-col justify-between rounded-2xl p-8 transition-[translate,border-color,box-shadow] duration-300 hover:-translate-y-2 hover:shadow-[0_24px_50px_-16px_rgba(0,122,255,0.3),inset_0_1px_0_rgba(255,255,255,0.9)]">
       <div>
         <div className="flex items-center justify-between">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-card-dark text-accent">
+          <div className="glass-tile flex h-12 w-12 items-center justify-center rounded-xl text-accent">
             <Folder className="h-6 w-6" />
           </div>
           {project.link && (
@@ -20,15 +20,15 @@ export default function ProjectCard({ project }: { project: Project }) {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted transition-colors hover:text-accent"
+              className="text-ink-secondary transition-colors hover:text-accent"
               aria-label={`Buka ${project.title}`}
             >
               <ExternalLink className="h-5 w-5" />
             </a>
           )}
         </div>
-        <h3 className="mt-6 text-lg font-bold text-white">{project.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted">
+        <h3 className="mt-6 text-lg font-bold text-ink">{project.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-ink-secondary">
           {project.description}
         </p>
       </div>
@@ -36,7 +36,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         {project.tech.map((t) => (
           <span
             key={t}
-            className="rounded-full border border-border px-3 py-1 font-mono text-xs text-accent"
+            className="glass-tile rounded-full px-3 py-1 font-mono text-xs text-accent"
           >
             {t}
           </span>

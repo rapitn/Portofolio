@@ -1,24 +1,28 @@
 # RapI's Portfolio Website
 
 ## Overview
-Personal portfolio website for **RapI's** — a Full-Stack Developer. Dark mode minimalist design showcasing skills, background, and contact info.
+Personal portfolio website for **RapI's** — a Full-Stack Developer. Light, minimalist, Apple-style glass design showcasing skills, background, and contact info.
 
 ## Tech Stack
 - Framework: Next.js (App Router) with TypeScript
-- Styling: Tailwind CSS (dark mode)
+- Styling: Tailwind CSS v4 (light theme via `@theme` in `app/globals.css`)
 - Animation: Framer Motion
 - Icons: Lucide React
-- Fonts: Google Fonts — Inter (primary), JetBrains Mono (code/tech)
+- Fonts: No external fonts loaded (Google Fonts removed for performance). UI uses native system stack via `font-sf` and Tailwind's default `font-mono`
 
 ## Theme & Design
-- Mode: Dark
-- Background: `#0A0A0A` to `#1A1A2E` gradient
-- Accent: Cyan/electric blue `#00E5FF`
-- Text primary: `#FFFFFF`
-- Text secondary: `#9CA3AF` (gray)
-- Card bg: `#1F2937` / `#111827`
-- Border: `#374151`
-- Font: Inter (body), JetBrains Mono (code/skills)
+
+- Mode: Light (Apple-style **glassmorphism** — spec: `document/design/Glassmorphism.md`)
+- Background: `paper` `#FAFAF8` with fixed ambient color orbs in `body::before` (blue/violet radial gradients, static layer)
+- Text primary: `ink` `#1D1D1F`
+- Text secondary: `ink-secondary` `#86868B`
+- Text tertiary: `ink-tertiary` `#A1A1A6`
+- Card bg: `card` `#FFFFFF`
+- Border: `card-border` rgba(0,0,0,0.06)
+- Accent: `accent` `#007AFF`
+- Glass tokens: `glass` rgba(255,255,255,0.5), `glass-strong` rgba(255,255,255,0.65), `glass-highlight` rgba(255,255,255,0.85), `glass-border` rgba(255,255,255,0.45), `glass-deep` rgba(255,255,255,0.08)
+- Glass utilities: `glass-surface` (frosted panel: `bg-glass` + `backdrop-blur(16px)` + white border + inset top highlight) and `glass-tile` (small icon/chip tile: lighter blur 8px)
+- Glass, `bg-paper`, `font-sf`
 
 ## Pages
 
@@ -53,8 +57,7 @@ Personal portfolio website for **RapI's** — a Full-Stack Developer. Dark mode 
 ### 5. Contact (`/contact`)
 - Section heading: "Kontak"
 - Contact info (email, GitHub)
-- Simple contact form (name, email, message)
-- Or just display contact links
+- Contact form (name, email, message) — submit opens a pre-filled `mailto:rafitrinugraha@gmail.com`
 
 ### 6. Navigation (`/components/navbar.tsx`)
 - Fixed top navbar
@@ -74,6 +77,7 @@ Porto Web/
 ├── app/
 │   ├── layout.tsx
 │   ├── page.tsx
+│   ├── icon.svg
 │   ├── about/
 │   │   └── page.tsx
 │   ├── skills/
@@ -89,11 +93,11 @@ Porto Web/
 │   ├── hero.tsx
 │   ├── skill-card.tsx
 │   ├── project-card.tsx
-│   └── contact-form.tsx
+│   ├── contact-form.tsx
+│   └── page-meta.tsx
 ├── public/
-│   └── profile.png
-├── tailwind.config.js
-├── next.config.js
+│   └── profile.jpg
+├── next.config.ts
 ├── tsconfig.json
 ├── package.json
 └── AGENTS.md
@@ -103,32 +107,33 @@ Porto Web/
 
 ### Navbar
 - Fixed position, full width
-- Dark semi-transparent background (`bg-black/50` with backdrop blur)
-- Logo text "RapI's" in accent color
-- Nav links: white text, hover to accent color
-- GitHub icon (Lucide) on the right
-- Mobile: hamburger menu with dropdown
+- Floating glass pill (`glass-surface`, `backdrop-blur(16px)` [limited per perf], white border + inset highlight)
+- Logo text "RapI's" in `text-ink`, hover to accent
+- Nav links: `text-ink-secondary`, active link `text-ink`
+- GitHub icon (`glass-tile`) on the right
+- Mobile: hamburger menu with glass dropdown (`glass-surface`)
 
 ### Hero
-- Centered content, vertical spacing
-- Name: text-5xl md:text-7xl font-bold
-- Tagline: text-lg md:text-xl text-gray-400
-- Profile photo: circular, bordered with accent color
-- Fade-in + slide-up animation on load
+- Centered content, vertical spacing, min-h-screen
+- Name: `font-sf text-5xl md:text-7xl font-bold text-ink`
+- Tagline: text-lg md:text-xl `text-ink-secondary` with accent dot
+- Profile photo: circular, `border-white/80 bg-white` with soft shadow + accent glow (`blur-xl` [perf])
+- Fade-in + slide-up staggered animation on load
 
 ### Skill Card
-- Background: `#1F2937` rounded-2xl
-- Icon (Lucide) centered at top
-- Title: bold white text
-- Description: gray text, small
-- Hover: `-translate-y-2`, shadow accent color glow
+- Background: `glass-surface` rounded-[24px]
+- Icon (Lucide) in `glass-tile`
+- Title: bold `text-ink`
+- Description: `text-ink-secondary`
+- Progress bar: track `bg-ink/[0.08]`, fill `bg-accent`, level label in `text-accent`
+- Hover: `-translate-y-1.5`, softer/larger shadow
 - Transition: duration-300
 
 ### Footer
-- Centered, padding
-- GitHub icon link
-- Copyright: "© 2026 RapI's"
-- Background: darker than main
+- Centered, padding, top border `border-white/40`
+- GitHub + Email icon links (`glass-tile`), hover to accent
+- Copyright: "© {year} RapI's"
+- Background: `bg-paper-deep/40` (subtle, lighter than main)
 
 ## Animations
 - Page transitions: fadeIn (opacity 0 → 1)
@@ -136,9 +141,13 @@ Porto Web/
 - Card hover: translateY + glow shadow
 - Smooth scroll for nav links
 - Staggered animation for skill cards
+- Perf: scroll arrow uses CSS `@keyframes float`/`.animate-float` (not a framer-motion rAF loop); transitions target specific properties (`transition-[transform,border-color,box-shadow]`, never `transition-all`); below-fold sections use `.cv-auto` (`content-visibility: auto`)
 
 ## Notes
-- Profile photo placeholder: `public/profile.png` — user will provide
+- Profile photo: `public/profile.jpg`
 - No projects yet — show empty placeholder state
 - All text in Indonesian (except tech terms)
 - Fully responsive (mobile-first)
+- Per-page SEO title/description via `components/page-meta.tsx` (client pages can't `export metadata`)
+- Favicon: `app/icon.svg` (auto-served at `/icon.svg`)
+- `.gitignore` excludes unrelated cloned repos `stop-slop/` & `awesome-copilot/` (also in tsconfig `exclude` + eslint `globalIgnores`)

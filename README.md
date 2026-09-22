@@ -1,6 +1,6 @@
 # RapI's Portfolio
 
-Personal portfolio for **RapI's**, a Full-Stack Developer. Built with a dark, minimalist design to showcase skills, background, and contact info.
+Personal portfolio for **RapI's**, a Full-Stack Developer. Built with a light, minimalist, Apple-style glass design to showcase skills, background, and contact info.
 
 ## Tech Stack
 
@@ -8,7 +8,7 @@ Personal portfolio for **RapI's**, a Full-Stack Developer. Built with a dark, mi
 - [Tailwind CSS v4](https://tailwindcss.com)
 - [Framer Motion](https://www.framer.com/motion) for animations
 - [Lucide React](https://lucide.dev) + custom SVG for icons
-- Google Fonts — Inter (body), JetBrains Mono (code)
+- System font stack — `font-sf` (custom), no external fonts loaded (faster loads)
 
 ## Getting Started
 
@@ -49,9 +49,10 @@ Open [http://localhost:3000](http://localhost:3000).
 │   ├── hero.tsx        # Landing hero section
 │   ├── skill-card.tsx  # Skill card with progress bar
 │   ├── project-card.tsx# Project card
-│   ├── contact-form.tsx# Contact form
+│   ├── contact-form.tsx# Contact form (opens mailto on submit)
+│   ├── page-meta.tsx    # Per-page SEO title/description
 │   └── github-icon.tsx # GitHub SVG icon
-├── public/         # Static assets (profile.jpg)
+├── public/         # Static assets (profile.jpg, icon.svg served from /icon.svg)
 └── AGENTS.md       # Project specification
 ```
 

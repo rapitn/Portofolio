@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown, Code2, Send } from "lucide-react";
+import { ArrowDown, Send } from "lucide-react";
 import GithubIcon from "@/components/github-icon";
 
 const container = {
@@ -33,7 +33,8 @@ export default function Hero() {
     >
       <div className="flex flex-col items-center text-center">
         <motion.div variants={item} className="relative">
-          <div className="absolute -inset-1 rounded-full bg-accent/30 blur-2xl" />
+          <div className="absolute -inset-2 rounded-full bg-accent/30 blur-xl" />
+          <div className="absolute -inset-1 rounded-full bg-white/30 backdrop-blur-md" />
           <Image
             src="/profile.jpg"
             alt="Foto profil RapI's"
@@ -73,7 +74,7 @@ export default function Hero() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2.5 rounded-2xl bg-ink px-7 py-3.5 text-sm font-semibold text-paper shadow-xl shadow-ink/10 transition-all hover:scale-[1.03] hover:shadow-2xl"
+            className="inline-flex items-center gap-2.5 rounded-2xl bg-ink px-7 py-3.5 text-sm font-semibold text-paper shadow-xl shadow-ink/10 transition-[scale,box-shadow] hover:scale-[1.03] hover:shadow-2xl"
           >
             <Send className="h-4 w-4" />
             Hubungi Saya
@@ -82,7 +83,7 @@ export default function Hero() {
             href="https://github.com/rapitn"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 rounded-2xl bg-white/70 px-7 py-3.5 text-sm font-medium text-ink ring-1 ring-ink/[0.08] transition-all hover:bg-white hover:shadow-lg"
+            className="glass-surface inline-flex items-center gap-2.5 rounded-2xl px-7 py-3.5 text-sm font-medium text-ink transition-[background-color,box-shadow] hover:bg-glass-strong"
           >
             <GithubIcon className="h-4 w-4" />
             GitHub
@@ -91,17 +92,14 @@ export default function Hero() {
 
         <motion.div
           variants={item}
-          className="mt-16 flex flex-col items-center gap-2 text-muted"
+          className="mt-16 flex flex-col items-center gap-2 text-ink-secondary"
         >
           <span className="font-mono text-xs uppercase tracking-widest">
             Scroll untuk menjelajah
           </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity }}
-          >
+          <div className="animate-float">
             <ArrowDown className="h-5 w-5" />
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </motion.section>

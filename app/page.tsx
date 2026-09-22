@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Terminal, Cpu, Palette, ArrowRight } from "lucide-react";
 import Hero from "@/components/hero";
+import PageMeta from "@/components/page-meta";
 
 const previewSkills = [
   {
@@ -32,9 +33,13 @@ const previewSkills = [
 export default function Home() {
   return (
     <>
+      <PageMeta
+        title="RapI's — Full-Stack Developer"
+        description="Portofolio pribadi RapI's — Full-Stack Developer. Python, C++, HTML/CSS."
+      />
       <Hero />
 
-      <section className="mx-auto w-full max-w-6xl px-6 pb-24 md:px-8">
+      <section className="cv-auto mx-auto w-full max-w-6xl px-6 pb-24 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +48,7 @@ export default function Home() {
           className="text-center"
         >
           <span className="font-mono text-sm uppercase tracking-widest text-accent">{"// kemampuan inti"}</span>
-          <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold text-ink sm:text-4xl">
             Apa yang saya kerjakan
           </h2>
 
@@ -51,7 +56,7 @@ export default function Home() {
             {previewSkills.map((s) => (
               <div
                 key={s.title}
-                className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-accent"
+                className="glass-surface flex items-center gap-4 rounded-2xl p-5 text-left transition-[translate,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-16px_rgba(0,122,255,0.3)]"
               >
                 <div
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
@@ -60,8 +65,8 @@ export default function Home() {
                   {s.icon}
                 </div>
                 <div>
-                  <div className="font-bold text-white">{s.title}</div>
-                  <div className="text-sm text-muted">{s.desc}</div>
+                  <div className="font-bold text-ink">{s.title}</div>
+                  <div className="text-sm text-ink-secondary">{s.desc}</div>
                 </div>
               </div>
             ))}
@@ -69,7 +74,7 @@ export default function Home() {
 
           <Link
             href="/skills"
-            className="mt-10 inline-flex items-center gap-2 font-semibold text-accent transition-colors hover:text-white"
+            className="mt-10 inline-flex items-center gap-2 font-semibold text-accent transition-colors hover:text-ink"
           >
             Lihat semua kemampuan
             <ArrowRight className="h-4 w-4" />

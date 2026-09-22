@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 w-full">
       <div className="mx-auto max-w-6xl px-6 pt-5 md:px-8">
-        <div className="flex items-center justify-between rounded-[20px] bg-glass/80 px-5 py-3.5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-xl ring-1 ring-inset ring-black/5">
+        <div className="glass-surface flex items-center justify-between rounded-[20px] px-5 py-3.5">
           <Link
             href="/"
             className="font-sf text-xl font-semibold tracking-tight text-ink transition-colors hover:text-accent"
@@ -53,14 +53,14 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-ink/[0.04] text-ink-secondary transition-all duration-200 hover:bg-ink/[0.08] hover:text-ink"
+              className="glass-tile flex h-9 w-9 items-center justify-center rounded-full text-ink-secondary transition-[background-color,color] duration-200 hover:bg-glass hover:text-ink"
             >
               <GithubIcon className="h-4 w-4" />
             </a>
 
             <button
               onClick={() => setOpen((v) => !v)}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-ink/[0.04] text-ink-secondary transition-all hover:bg-ink/[0.08] hover:text-ink md:hidden"
+              className="glass-tile flex h-9 w-9 items-center justify-center rounded-full text-ink-secondary transition-[background-color,color] hover:bg-glass hover:text-ink md:hidden"
               aria-label="Menu"
               aria-expanded={open}
             >
@@ -71,7 +71,7 @@ export default function Navbar() {
 
         {open && (
           <nav
-            className="mt-3 rounded-[20px] bg-glass/95 px-5 py-4 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-2xl ring-1 ring-inset ring-black/5 md:hidden"
+            className="glass-surface mt-3 rounded-[20px] px-5 py-4 md:hidden"
             aria-label="Mobile"
           >
             <div className="flex flex-col gap-1">

@@ -7,8 +7,6 @@ export type Skill = {
   title: string;
   description: string;
   level: number;
-  iconBg: string;
-  iconColor: string;
 };
 
 export default function SkillCard({
@@ -19,43 +17,41 @@ export default function SkillCard({
   index: number;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col items-center rounded-2xl border border-border bg-card p-8 text-center transition-all duration-300 hover:-translate-y-2 hover:border-accent hover:shadow-[0_10px_40px_-10px_rgba(0,229,255,0.4)]"
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+      className="group flex flex-col rounded-[24px] bg-card border border-card-border p-7 shadow-[0_2px_20px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
     >
-      <div
-        className="flex h-16 w-16 items-center justify-center rounded-2xl"
-        style={{ backgroundColor: skill.iconBg, color: skill.iconColor }}
-      >
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-ink/[0.04] text-ink transition-colors group-hover:bg-ink/[0.08]">
         {skill.icon}
       </div>
-      <h3 className="mt-6 text-xl font-bold text-white">{skill.title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-muted">
+
+      <h3 className="mt-6 font-sf text-xl font-bold tracking-tight text-ink">
+        {skill.title}
+      </h3>
+      <p className="mt-2 text-[15px] leading-relaxed text-ink-secondary">
         {skill.description}
       </p>
 
-      <div className="mt-6 w-full">
-        <div className="mb-1.5 flex items-center justify-between">
-          <span className="font-mono text-xs uppercase tracking-wider text-muted">
+      <div className="mt-6">
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-xs font-medium uppercase tracking-wide text-ink-tertiary">
             Tingkat
           </span>
-          <span className="font-mono text-xs font-medium text-accent">
-            {skill.level}%
-          </span>
+          <span className="text-xs font-bold text-accent">{skill.level}%</span>
         </div>
-        <div className="h-2 w-full overflow-hidden rounded-full bg-[#111827]">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink/[0.06]">
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: `${skill.level}%` }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
+            transition={{ duration: 1.1, ease: "easeOut", delay: 0.3 + index * 0.1 }}
             className="h-full rounded-full bg-accent"
           />
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }

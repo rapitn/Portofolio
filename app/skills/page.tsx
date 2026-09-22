@@ -65,13 +65,13 @@ export default function SkillsPage() {
         </motion.span>
         <motion.h1
           variants={item}
-          className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl"
+          className="mt-3 font-sf text-4xl font-bold tracking-tighter text-ink sm:text-5xl md:text-6xl"
         >
           Keterampilan
         </motion.h1>
         <motion.p
           variants={item}
-          className="mt-4 text-base leading-relaxed text-muted sm:text-lg"
+          className="mt-4 text-base leading-7 text-ink-secondary sm:text-lg"
         >
           Teknologi dan bahasa yang saya pakai untuk membangun aplikasi dari
           ujung ke ujung.
